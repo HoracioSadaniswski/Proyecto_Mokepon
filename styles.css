@@ -1,0 +1,134 @@
+/*              *****SELECTORES****
+selector para cambiar el color: puede ser ocupando el mismo nombre que tenemos en el archivo html.
+Existe tambien el selector de clase class='nombre' que debe ser colocado en el archivo html y se lo llama por meido de un .nombre.
+Otro selector es el id = 'nombre' funciona de la misma forma que el selector de clase pero para invocarlo debemos hacerlo por medio del # + nombre.  */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-image: url(./fondo/peakpx.jpg);
+    background-size: cover;
+}
+
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    color:#44699f;
+    font-size: 50px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.subtitulo {
+    color: #44699f;
+    font-size: 30px
+}
+
+.tarjetas, .tarjetas-ataques {
+    display: flex;
+    gap: 10px;
+}
+
+.tarjeta-de-mokepon {
+    width: 180px;
+    height: 240px;
+    background: #609eb799;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    flex-direction: column-reverse;
+}
+
+.tarjeta-de-mokepon img{
+    width: 80px;
+}
+
+#boton-mascota {
+    width: 170px;
+    height: 40px;
+    border-radius: 20px;
+    background: transparent;
+    border: 2px solid cadetblue;
+    color: #239af5;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 30px;
+}
+
+input {
+    display: none;
+}
+
+input:checked + label {
+    background: #265f9f;
+}
+
+#seleccionar-ataque {
+    flex-direction: column;
+    align-items: center;
+}
+
+.boton-de-ataque {
+    background-color:#6998abcc;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border-color: transparent;
+    width: 170px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+#mensajes {
+    width: 240px;
+    background: #112b3eb5;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    border: 2px solid #0c7fff;
+    color: #88c8f8;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+       
+}
+
+#boton-reiniciar{
+    border: none;
+    color: #0c7fff;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+}
+
+.ataques{
+    width: 300px;
+    background: #112b3eb5;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    border: 2px solid #0c7fff;
+    color: #fafafa;
+    display: grid;
+    grid-template-columns: 100px 100px;
+    justify-content: space-around;
+}
+
+.ataques-jugador, .ataques-enemigo {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+}
+
+@media (max-width:360px) {
+    .tarjetas, .tarjetas-ataques {
+        flex-direction: column;
+    }
+}
