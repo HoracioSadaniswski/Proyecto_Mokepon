@@ -29,6 +29,21 @@ let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 
+//clase Mokepon
+class Mokepon {
+    constructor(nombre, foto, vida) {
+        this.nombre = nombre
+        this.foto = foto
+        this.vida = vida
+    }
+}
+//objetos
+let hipodoge = new Mokepon('Hipodoge', './assets/kisspng-siberian-husky-wolfdog.png', 5)
+
+let capipepo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemoth.png', 5)
+
+let ratigueya = new Mokepon('Ratiguea', './assets/kisspng-brave-frontier-carbuncle-dragon-.png" alt="Ratigueya', 5)
+
 // en la funcion iniciarJuego llamamos al elemento boton-mascota para que al hacer clik se seleccione la mascota elegida por el jugador. 
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display = "none"
@@ -43,7 +58,7 @@ function iniciarJuego(){
 // El document.getElementById me permite ocupar o traer desde el archivo html a js el elemento que queremos utilizar.
 function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none'
- 
+
     sectionSeleccionarAtaque.style.display = "flex"
 
     if (inputHipodoge.checked){
@@ -147,7 +162,7 @@ function crearMensajeFinal(resultadoFinal) {
 
 //Para reiniciar el juego vamos a utilizar el metodo location.reload. Este metodo va a reiniciar la direccion en la que estamos, es decir va a volver a cargar la pagina html volviendo todos los parametros a 0, como si dieramos click al boton "recargar".
 function reiniciarJuego() {
-     location.reload()
+    location.reload()
 }
 
 function aleatorio(min, max){
