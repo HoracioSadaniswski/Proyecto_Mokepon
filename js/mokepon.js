@@ -23,7 +23,7 @@ const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 
 
-
+let mokepones = []
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
@@ -43,6 +43,9 @@ let hipodoge = new Mokepon('Hipodoge', './assets/kisspng-siberian-husky-wolfdog.
 let capipepo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemoth.png', 5)
 
 let ratigueya = new Mokepon('Ratiguea', './assets/kisspng-brave-frontier-carbuncle-dragon-.png" alt="Ratigueya', 5)
+
+//arreglo o array
+mokepones.push(hipodoge, capipepo, ratigueya)
 
 // en la funcion iniciarJuego llamamos al elemento boton-mascota para que al hacer clik se seleccione la mascota elegida por el jugador. 
 function iniciarJuego(){
