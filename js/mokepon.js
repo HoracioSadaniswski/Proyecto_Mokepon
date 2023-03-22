@@ -21,11 +21,12 @@ const spanVidasEnemigo = document.getElementById("vidas-enemigo")
 const sectionMensajes = document.getElementById('resultado')
 const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
-
+const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
 let mokepones = []
 let ataqueJugador
 let ataqueEnemigo
+let opcionDeMokepones
 let vidasJugador = 3
 let vidasEnemigo = 3
 
@@ -43,10 +44,9 @@ let hipodoge = new Mokepon('Hipodoge', './assets/kisspng-siberian-husky-wolfdog.
 
 let capipepo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemoth.png', 5)
 
-let ratigueya = new Mokepon('Ratiguea', './assets/kisspng-brave-frontier-carbuncle-dragon-.png" alt="Ratigueya', 5)
+let ratigueya = new Mokepon('Ratigueya', './assets/kisspng-brave-frontier-carbuncle-dragon-.png', 5)
 
 //arreglo o array
-/* mokepones.push(hipodoge, capipepo, ratigueya) */
 
 hipodoge.ataques.push(
     { nombre: '💧', id: 'boton-agua'},
@@ -72,9 +72,23 @@ ratigueya.ataques.push(
     { nombre: '🌱', id: 'boton-tierra'},
 )
 
+mokepones.push(hipodoge, capipepo, ratigueya)
+
 // en la funcion iniciarJuego llamamos al elemento boton-mascota para que al hacer clik se seleccione la mascota elegida por el jugador. 
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display = "none"
+
+    mokepones.forEach((mokepon) => {
+        opcionDeMokepones = `
+        <input type="radio" name="mascota" id=${mokepon.nombre}/>
+        <label class="tarjeta-de-mokepon" for=${mokepon.nombre}>
+            <p>${mokepon.nombre}</p>
+            <img src=${mokepon.foto} alt=${mokepon.nombre}>
+        </label>
+        `
+        contenedorTarjetas.innerHTML += opcionDeMokepones
+    })
+
     sectionReiniciar.style.display = 'none'
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
     botonFuego.addEventListener('click', ataqueFuego)
