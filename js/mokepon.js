@@ -42,6 +42,7 @@ let victoriasEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
 let lienzo  = mapa.getContext('2d')
+let intervalo
 
 
 //clase Mokepon
@@ -51,6 +52,14 @@ class Mokepon {
         this.foto = foto
         this.vida = vida
         this.ataques = []
+        this.x = 20
+        this.y = 30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto 
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 }
 //objetos
@@ -90,8 +99,8 @@ mokepones.push(hipodoge, capipepo, ratigueya)
 
 // en la funcion iniciarJuego llamamos al elemento boton-mascota para que al hacer clik se seleccione la mascota elegida por el jugador. 
 function iniciarJuego(){
-    sectionSeleccionarAtaque.style.display = "none"
-    sectionVerMapa.style.display = "none"
+    sectionSeleccionarAtaque.style.display = 'none'
+    sectionVerMapa.style.display = 'none'
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `
@@ -121,15 +130,7 @@ function seleccionarMascotaJugador() {
 
     //sectionSeleccionarAtaque.style.display = "flex"
     sectionVerMapa.style.display = 'flex'
-    let imagenDeCapipepo = new Image()
-    imagenDeCapipepo = capipepo.foto
-    lienzo.drawimage(
-        imagenDeCapipepo,
-        20,
-        40,
-        100,
-        100,
-    )
+    intervalo = setInterval(pintarPersonaje, 50)
 
     if (inputHipodoge.checked){
         spanMascotaJugador.innerHTML = inputHipodoge.id;
@@ -146,6 +147,7 @@ function seleccionarMascotaJugador() {
 
     extraerAtaques(mascotaJugador)
     seleccionarMascotaEnemigo()
+    
 }
 
 function extraerAtaques(mascotaJugador) {
@@ -253,41 +255,6 @@ function combate(){
     revisarVictorias()        
 }
 
-/* function combate() {
-    
-    for (let index = 0; index < ataqueJugador.length; index++) {
-        if(ataqueJugador[index] === ataqueEnemigo[index]) {
-            indexAmbosOponentes(index, index)
-            crearMensaje("EMPATE")
-        } else if (ataqueJugador[index] === 'FUEGO' && ataqueEnemigo[index] === 'TIERRA') {
-            indexAmbosOponentes(index, index)
-            crearMensaje("GANASTE")
-            victoriasJugador++
-            spanVidasJugador.innerHTML = victoriasJugador
-        } else if (ataqueJugador[index] ==='AGUA' && ataqueEnemigo[index] === 'FUEGO') {
-            indexAmbosOponentes(index, index)
-            crearMensaje("GANASTE")
-            victoriasJugador++
-            spanVidasJugador.innerHTML = victoriasJugador
-        } else if (ataqueJugador[index] === 'TIERRA' && ataqueEnemigo[index] === 'AGUA') {
-            indexAmbosOponentes(index, index)
-            crearMensaje("GANASTE")
-            victoriasJugador++
-            spanVidasJugador.innerHTML = victoriasJugador
-        } else {
-            indexAmbosOponentes(index, index)
-            crearMensaje("PERDISTE")
-            victoriasEnemigo++
-            spanVidasEnemigo.innerHTML = victoriasEnemigo
-        }
-    }
-
-    revisarVictorias()
-} */
-
-
-    
-
 function revisarVictorias(){
     if (victoriasJugador === victoriasEnemigo) {
         crearMensajeFinal("ESTO ES UN EMPATE")
@@ -323,6 +290,37 @@ function reiniciarJuego() {
 
 function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function pintarPersonaje() {
+    capipepo.x += capipepo.velocidadX 
+    capipepo.y += capipepo.velocidadY
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
+    lienzo.drawImage(
+        capipepo.mapaFoto,
+        capipepo.x,
+        capipepo.y,
+        capipepo.ancho,
+        capipepo.alto
+    )
+} 
+
+function moverDerecha() {
+    capipepo.velocidadX = 5
+}
+function moverIzquierda() {
+    capipepo.velocidadX = -5
+}
+function moverAbajo() {
+    capipepo.velocidadY = 5
+}
+function moverArriba() {
+    capipepo.velocidadY = -5
+}
+
+function detenerMovimiento() {
+    capipepo.velocidadX = 0
+    capipepo.velocidadY = 0
 }
 
 //con window.addEventListener lo que hacemos es llamar la funcion 'iniciarJuego' apenas se termine de cargar el contenido html.
