@@ -165,14 +165,17 @@ function secuenciaAtaques () {
                 ataqueJugador.push('FUEGO')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true;
             } else if (e.target.textContent === '💧') {
                 ataqueJugador.push('AGUA')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true;
             } else {
                 ataqueJugador.push('TIERRA')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true;
             }
             ataqueAleatorioEnemigo()
         })
@@ -214,12 +217,13 @@ function indexAmbosOponentes(jugador,enemigo) {
     indexAtaqueEnemigo = ataqueEnemigo[enemigo]
 }
 
-/* function combate(){
+function combate(){
     for (let index = 0; index < ataqueJugador.length; index++) {
         if(ataqueJugador[index] === ataqueEnemigo[index]) {
             indexAmbosOponentes(index, index)
             crearMensaje('EMPATE')
         } else if((ataqueJugador[index] === 'FUEGO' && ataqueEnemigo[index] === 'TIERRA') || (ataqueJugador[index] === 'AGUA' && ataqueEnemigo[index] === 'FUEGO') || (ataqueJugador[index] === 'TIERRA' && ataqueEnemigo[index] === 'AGUA')) {
+            indexAmbosOponentes(index, index)
             crearMensaje("GANASTE")
             victoriasJugador ++ 
             spanVidasJugador.innerHTML = victoriasJugador
@@ -233,8 +237,8 @@ function indexAmbosOponentes(jugador,enemigo) {
     }
     revisarVictorias()        
 }
- */
-function combate() {
+
+/* function combate() {
     
     for (let index = 0; index < ataqueJugador.length; index++) {
         if(ataqueJugador[index] === ataqueEnemigo[index]) {
@@ -264,7 +268,7 @@ function combate() {
     }
 
     revisarVictorias()
-}
+} */
 
 
     
@@ -294,9 +298,6 @@ function crearMensaje(resultado){
 function crearMensajeFinal(resultadoFinal) {
     sectionMensajes.innerHTML = resultadoFinal
 // Para desabilitar los botones una vez que las vidas lleguen a 0, vamos a copiar el llamado de los botones que tenemos en la funcion iniciar juego y luego vamos a ocupar el atributo .disabled = true.
-    botonFuego.disabled = true
-    botonAgua.disabled = true
-    botonTierra.disabled = true
     sectionReiniciar.style.display = 'block'
 }
 
