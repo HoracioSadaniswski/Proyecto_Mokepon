@@ -130,7 +130,8 @@ function seleccionarMascotaJugador() {
 
     //sectionSeleccionarAtaque.style.display = "flex"
     sectionVerMapa.style.display = 'flex'
-    intervalo = setInterval(pintarPersonaje, 50)
+    
+    iniciarMapa()
 
     if (inputHipodoge.checked){
         spanMascotaJugador.innerHTML = inputHipodoge.id;
@@ -323,6 +324,30 @@ function detenerMovimiento() {
     capipepo.velocidadY = 0
 }
 
+function keyPressed(event) {
+    switch (event.key) {
+        case 'ArrowUp':
+            moverArriba()
+            break
+        case 'ArrowDown':
+            moverAbajo()
+            break
+        case 'ArrowLeft':
+            moverIzquierda()
+            break
+        case 'ArrowRight':
+            moverDerecha()
+            break
+        default:
+            break;
+    }
+}
+
+function iniciarMapa() {
+    intervalo = setInterval(pintarPersonaje, 50)
+    window.addEventListener('keydown', keyPressed)
+    window.addEventListener('keyup', detenerMovimiento)
+}
 //con window.addEventListener lo que hacemos es llamar la funcion 'iniciarJuego' apenas se termine de cargar el contenido html.
 window.addEventListener('load', iniciarJuego) 
 
