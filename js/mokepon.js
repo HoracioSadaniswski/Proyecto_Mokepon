@@ -49,7 +49,7 @@ mapaBackground.src = './assets/mokemap.png'
 
 //clase Mokepon
 class Mokepon {
-    constructor(nombre, foto, vida, x = 10, y = 10) {
+    constructor(nombre, foto, vida, x = 100, y = 200) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
@@ -81,11 +81,11 @@ let capipepo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemo
 
 let ratigueya = new Mokepon('Ratigueya', './assets/kisspng-brave-frontier-carbuncle-dragon-.png', 5)
 
-let hipodogeEnemigo = new Mokepon('Leviatán', './assets/leviatan.png', 5, 80, 120)
+let hipodogeEnemigo = new Mokepon('Leviatán', './assets/leviatan.png', 5, 275, 575)
 
-let capipepoEnemigo = new Mokepon('Minotauro', './assets/minotauro.png', 5, 150, 95)
+let capipepoEnemigo = new Mokepon('Minotauro', './assets/minotauro.png', 5, 375, 300)
 
-let ratigueyaEnemigo = new Mokepon('Dragón', './assets/dragon.png', 5, 200, 250)
+let ratigueyaEnemigo = new Mokepon('Dragón', './assets/dragon.png', 5, 600, 70)
 
 //arreglo o array
 
@@ -326,6 +326,11 @@ function pintarCanvas() {
     hipodogeEnemigo.pintarMokepon()
     capipepoEnemigo.pintarMokepon()
     ratigueyaEnemigo.pintarMokepon()
+    if (mascotaJugadorSeleccionada.velocidadX !== 0 || mascotaJugadorSeleccionada.velocidadY !== 0) {
+        revisarColision(hipodogeEnemigo)
+        revisarColision(capipepoEnemigo)
+        revisarColision(ratigueyaEnemigo)
+    }
 } 
 
 function moverDerecha() {
@@ -380,6 +385,34 @@ function mascotaSeleccionada () {
             return mokepones[i]
         }
     }
+}
+
+function revisarColision(enemigo) {
+    const arribaEnemigo = enemigo.y
+    const abajoEnemigo = enemigo.y + enemigo.alto
+    const izquierdaEnemigo = enemigo.x
+    const derechaEnemigo = enemigo.x + enemigo.ancho
+
+    const arribaMascota = 
+        mascotaJugadorSeleccionada.y
+    const abajoMascota = 
+        mascotaJugadorSeleccionada.y + mascotaJugadorSeleccionada.alto
+    const izquierdaMascota = 
+        mascotaJugadorSeleccionada.x
+    const derechaMascota = 
+        mascotaJugadorSeleccionada.x + mascotaJugadorSeleccionada.ancho
+
+    if (
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+    ) {
+        return 
+    }
+
+    detenerMovimiento()
+    alert('Combate con ' + enemigo.nombre)
 }
 
 //con window.addEventListener lo que hacemos es llamar la funcion 'iniciarJuego' apenas se termine de cargar el contenido html.
