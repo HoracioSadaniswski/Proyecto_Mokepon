@@ -81,11 +81,11 @@ let capipepo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemo
 
 let ratigueya = new Mokepon('Ratigueya', './assets/kisspng-brave-frontier-carbuncle-dragon-.png', 5)
 
-let hipodogeEnemigo = new Mokepon('Hipodoge', './assets/kisspng-siberian-husky-wolfdog.png', 5, 80, 120)
+let hipodogeEnemigo = new Mokepon('Leviatán', './assets/leviatan.png', 5, 80, 120)
 
-let capipepoEnemigo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemoth.png', 5, 150, 95)
+let capipepoEnemigo = new Mokepon('Minotauro', './assets/minotauro.png', 5, 150, 95)
 
-let ratigueyaEnemigo = new Mokepon('Ratigueya', './assets/kisspng-brave-frontier-carbuncle-dragon-.png', 5, 200, 250)
+let ratigueyaEnemigo = new Mokepon('Dragón', './assets/dragon.png', 5, 200, 250)
 
 //arreglo o array
 
