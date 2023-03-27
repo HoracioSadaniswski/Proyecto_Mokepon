@@ -88,7 +88,7 @@ let capipepoEnemigo = new Mokepon('Minotauro', './assets/minotauro.png', 5, 375,
 let ratigueyaEnemigo = new Mokepon('Dragón', './assets/dragon.png', 5, 600, 70)
 
 //arreglo o array
-
+//ataques Jugador
 hipodoge.ataques.push(
     { nombre: '💧', id: 'boton-agua'},
     { nombre: '💧', id: 'boton-agua'},
@@ -106,6 +106,31 @@ capipepo.ataques.push(
 )
 
 ratigueya.ataques.push(
+    { nombre: '🔥', id: 'boton-fuego'},
+    { nombre: '🔥', id: 'boton-fuego'},
+    { nombre: '🔥', id: 'boton-fuego'},
+    { nombre: '💧', id: 'boton-agua'},
+    { nombre: '🌱', id: 'boton-tierra'},
+)
+
+//ataques enemigo
+hipodogeEnemigo.ataques.push(
+    { nombre: '💧', id: 'boton-agua'},
+    { nombre: '💧', id: 'boton-agua'},
+    { nombre: '💧', id: 'boton-agua'},
+    { nombre: '🔥', id: 'boton-fuego'},
+    { nombre: '🌱', id: 'boton-tierra'},
+)
+
+capipepoEnemigo.ataques.push(
+    { nombre: '🌱', id: 'boton-tierra'},
+    { nombre: '🌱', id: 'boton-tierra'},
+    { nombre: '🌱', id: 'boton-tierra'},
+    { nombre: '🔥', id: 'boton-fuego'},
+    { nombre: '💧', id: 'boton-agua'},
+)
+
+ratigueyaEnemigo.ataques.push(
     { nombre: '🔥', id: 'boton-fuego'},
     { nombre: '🔥', id: 'boton-fuego'},
     { nombre: '🔥', id: 'boton-fuego'},
@@ -146,8 +171,6 @@ function iniciarJuego(){
 function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none'
 
-    //sectionSeleccionarAtaque.style.display = "flex"
-
     if (inputHipodoge.checked){
         spanMascotaJugador.innerHTML = inputHipodoge.id;
         mascotaJugador = inputHipodoge.id        
@@ -162,7 +185,6 @@ function seleccionarMascotaJugador() {
     } 
 
     extraerAtaques(mascotaJugador)
-    seleccionarMascotaEnemigo()
     sectionVerMapa.style.display = 'flex'
     iniciarMapa()
     
@@ -218,11 +240,13 @@ function secuenciaAtaques () {
 }
 
 
-function seleccionarMascotaEnemigo(){
-    let mascotaAleatorio = aleatorio(0, mokepones.length -1)
-    
+function seleccionarMascotaEnemigo(enemigo){
+    /* let mascotaAleatorio = aleatorio(0, mokepones.length -1)
     spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatorio].nombre
     ataquesMokeponEnemigo = mokepones[mascotaAleatorio].ataques
+    secuenciaAtaques() */
+    spanMascotaEnemigo.innerHTML = enemigo.nombre
+    ataquesMokeponEnemigo = enemigo.ataques
     secuenciaAtaques()
 }
 
@@ -412,7 +436,12 @@ function revisarColision(enemigo) {
     }
 
     detenerMovimiento()
-    alert('Combate con ' + enemigo.nombre)
+    clearInterval(intervalo)
+    console.log('colision')
+    sectionSeleccionarAtaque.style.display = "flex"
+    sectionVerMapa.style.display = 'none'
+    seleccionarMascotaEnemigo(enemigo)
+    
 }
 
 //con window.addEventListener lo que hacemos es llamar la funcion 'iniciarJuego' apenas se termine de cargar el contenido html.
