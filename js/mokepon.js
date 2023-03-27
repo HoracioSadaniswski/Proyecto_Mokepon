@@ -46,18 +46,30 @@ let lienzo  = mapa.getContext('2d')
 let intervalo
 let mapaBackground = new Image()
 mapaBackground.src = './assets/mokemap.png'
+let alturaQueBuscamos
+let anchoDelMapa = window.innerWidth - 20
+const anchoMaximoDelMapa = 1280
+
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 20
+}
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800
+
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBuscamos
 
 //clase Mokepon
 class Mokepon {
-    constructor(nombre, foto, vida, x = 100, y = 200) {
+    constructor(nombre, foto, vida) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = x
-        this.y = y
         this.ancho = 100
         this.alto = 100
+        this.x = aleatorio(0, mapa.width - this.ancho)
+        this.y = aleatorio(0, mapa.height - this.alto)
         this.mapaFoto = new Image()
         this.mapaFoto.src = foto 
         this.velocidadX = 0
@@ -81,11 +93,11 @@ let capipepo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemo
 
 let ratigueya = new Mokepon('Ratigueya', './assets/kisspng-brave-frontier-carbuncle-dragon-.png', 5)
 
-let hipodogeEnemigo = new Mokepon('Leviatán', './assets/leviatan.png', 5, 275, 575)
+let hipodogeEnemigo = new Mokepon('Leviatán', './assets/leviatan.png', 5)
 
-let capipepoEnemigo = new Mokepon('Minotauro', './assets/minotauro.png', 5, 375, 300)
+let capipepoEnemigo = new Mokepon('Minotauro', './assets/minotauro.png', 5)
 
-let ratigueyaEnemigo = new Mokepon('Dragón', './assets/dragon.png', 5, 600, 70)
+let ratigueyaEnemigo = new Mokepon('Dragón', './assets/dragon.png', 5)
 
 //arreglo o array
 //ataques Jugador
@@ -395,8 +407,6 @@ function keyPressed(event) {
 }
 
 function iniciarMapa() {
-    mapa.width = 1000
-    mapa.height = 800
     mascotaJugadorSeleccionada = mascotaSeleccionada(mascotaJugador)
     intervalo = setInterval(pintarCanvas, 50)
     window.addEventListener('keydown', keyPressed)
