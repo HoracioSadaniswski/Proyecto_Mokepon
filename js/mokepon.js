@@ -49,19 +49,29 @@ mapaBackground.src = './assets/mokemap.png'
 
 //clase Mokepon
 class Mokepon {
-    constructor(nombre, foto, vida) {
+    constructor(nombre, foto, vida, x = 10, y = 10) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = 20
-        this.y = 30
-        this.ancho = 80
-        this.alto = 80
+        this.x = x
+        this.y = y
+        this.ancho = 100
+        this.alto = 100
         this.mapaFoto = new Image()
         this.mapaFoto.src = foto 
         this.velocidadX = 0
         this.velocidadY = 0
+    }
+
+    pintarMokepon() {
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto
+        )
     }
 }
 //objetos
@@ -70,6 +80,12 @@ let hipodoge = new Mokepon('Hipodoge', './assets/kisspng-siberian-husky-wolfdog.
 let capipepo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemoth.png', 5)
 
 let ratigueya = new Mokepon('Ratigueya', './assets/kisspng-brave-frontier-carbuncle-dragon-.png', 5)
+
+let hipodogeEnemigo = new Mokepon('Hipodoge', './assets/kisspng-siberian-husky-wolfdog.png', 5, 80, 120)
+
+let capipepoEnemigo = new Mokepon('Capipepo', './assets/kisspng-granblue-fantasy-behemoth.png', 5, 150, 95)
+
+let ratigueyaEnemigo = new Mokepon('Ratigueya', './assets/kisspng-brave-frontier-carbuncle-dragon-.png', 5, 200, 250)
 
 //arreglo o array
 
@@ -306,13 +322,10 @@ function pintarCanvas() {
         mapa.width,
         mapa.height,
     )
-    lienzo.drawImage(
-        mascotaJugadorSeleccionada.mapaFoto,
-        mascotaJugadorSeleccionada.x,
-        mascotaJugadorSeleccionada.y,
-        mascotaJugadorSeleccionada.ancho,
-        mascotaJugadorSeleccionada.alto
-    )
+    mascotaJugadorSeleccionada.pintarMokepon()
+    hipodogeEnemigo.pintarMokepon()
+    capipepoEnemigo.pintarMokepon()
+    ratigueyaEnemigo.pintarMokepon()
 } 
 
 function moverDerecha() {
@@ -353,8 +366,8 @@ function keyPressed(event) {
 }
 
 function iniciarMapa() {
-    mapa.width = 800
-    mapa.height = 600
+    mapa.width = 1000
+    mapa.height = 800
     mascotaJugadorSeleccionada = mascotaSeleccionada(mascotaJugador)
     intervalo = setInterval(pintarCanvas, 50)
     window.addEventListener('keydown', keyPressed)
