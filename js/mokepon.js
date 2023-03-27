@@ -29,6 +29,7 @@ let inputHipodoge
 let inputCapipepo
 let inputRatigueya
 let mascotaJugador
+let mascotaJugadorSeleccionada
 let ataquesMokepon
 let ataquesMokeponEnemigo
 let botonFuego
@@ -43,7 +44,8 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 let lienzo  = mapa.getContext('2d')
 let intervalo
-
+let mapaBackground = new Image()
+mapaBackground.src = './assets/mokemap.png'
 
 //clase Mokepon
 class Mokepon {
@@ -129,9 +131,6 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none'
 
     //sectionSeleccionarAtaque.style.display = "flex"
-    sectionVerMapa.style.display = 'flex'
-    
-    iniciarMapa()
 
     if (inputHipodoge.checked){
         spanMascotaJugador.innerHTML = inputHipodoge.id;
@@ -148,6 +147,8 @@ function seleccionarMascotaJugador() {
 
     extraerAtaques(mascotaJugador)
     seleccionarMascotaEnemigo()
+    sectionVerMapa.style.display = 'flex'
+    iniciarMapa()
     
 }
 
@@ -293,35 +294,43 @@ function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function pintarPersonaje() {
-    capipepo.x += capipepo.velocidadX 
-    capipepo.y += capipepo.velocidadY
+function pintarCanvas() {
+
+    mascotaJugadorSeleccionada.x += mascotaJugadorSeleccionada.velocidadX 
+    mascotaJugadorSeleccionada.y += mascotaJugadorSeleccionada.velocidadY
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(
-        capipepo.mapaFoto,
-        capipepo.x,
-        capipepo.y,
-        capipepo.ancho,
-        capipepo.alto
+        mapaBackground,
+        0,
+        0,
+        mapa.width,
+        mapa.height,
+    )
+    lienzo.drawImage(
+        mascotaJugadorSeleccionada.mapaFoto,
+        mascotaJugadorSeleccionada.x,
+        mascotaJugadorSeleccionada.y,
+        mascotaJugadorSeleccionada.ancho,
+        mascotaJugadorSeleccionada.alto
     )
 } 
 
 function moverDerecha() {
-    capipepo.velocidadX = 5
+    mascotaJugadorSeleccionada.velocidadX = 5
 }
 function moverIzquierda() {
-    capipepo.velocidadX = -5
+    mascotaJugadorSeleccionada.velocidadX = -5
 }
 function moverAbajo() {
-    capipepo.velocidadY = 5
+    mascotaJugadorSeleccionada.velocidadY = 5
 }
 function moverArriba() {
-    capipepo.velocidadY = -5
+    mascotaJugadorSeleccionada.velocidadY = -5
 }
 
 function detenerMovimiento() {
-    capipepo.velocidadX = 0
-    capipepo.velocidadY = 0
+    mascotaJugadorSeleccionada.velocidadX = 0
+    mascotaJugadorSeleccionada.velocidadY = 0
 }
 
 function keyPressed(event) {
@@ -344,10 +353,22 @@ function keyPressed(event) {
 }
 
 function iniciarMapa() {
-    intervalo = setInterval(pintarPersonaje, 50)
+    mapa.width = 800
+    mapa.height = 600
+    mascotaJugadorSeleccionada = mascotaSeleccionada(mascotaJugador)
+    intervalo = setInterval(pintarCanvas, 50)
     window.addEventListener('keydown', keyPressed)
     window.addEventListener('keyup', detenerMovimiento)
 }
+
+function mascotaSeleccionada () {
+    for (let i = 0; i < mokepones.length; i++) {
+        if (mascotaJugador === mokepones[i].nombre) {
+            return mokepones[i]
+        }
+    }
+}
+
 //con window.addEventListener lo que hacemos es llamar la funcion 'iniciarJuego' apenas se termine de cargar el contenido html.
 window.addEventListener('load', iniciarJuego) 
 
