@@ -177,6 +177,21 @@ function iniciarJuego(){
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
     botonReiniciar.addEventListener('click', reiniciarJuego)
+
+    unirseAlJuego()
+}
+
+function unirseAlJuego() {
+    fetch('http://localhost:8080/unirse')
+        .then(function (res) {
+            
+            if (res.ok) {
+                res.text()
+                    .then(function(respuesta) {
+                        console.log(respuesta)
+                    })
+            }
+        })
 }
 
 // El document.getElementById me permite ocupar o traer desde el archivo html a js el elemento que queremos utilizar.
