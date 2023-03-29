@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MOKEPON!</title>
         <link rel="stylesheet" href="./styles.css">
         
@@ -20,13 +21,15 @@
         </section>
 
         <section id="ver-mapa">
-            <h1 class = "titulo">Recorre el mapa con tu Mokepon!</h1>
+            <h2 class = "subtitulo">Recorre el mapa con tu Mokepon!</h2>
             <canvas id="mapa"></canvas>
             <div class="btn-movimiento">
                 <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
-                <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
-                <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
+            </div>
+            <div class="btn-movimiento2">
                 <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
+                <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
+                <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
             </div>
         </section>
 
