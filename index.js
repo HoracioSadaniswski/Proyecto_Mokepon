@@ -97,6 +97,13 @@ app.post('/mokepon/:jugadorId/ataques', (req, res) => {
     res.end()
 })
 
+app.get('/mokepon/:jugadorId/ataques', (req, res) =>{
+    const jugadorId = req.params.jugadorId || ""
+    const jugador = jugadores.find((jugador) => jugador.id === jugadorId)
+    res.send ({
+        ataques: jugador.ataques || []
+    })
+})
 // le indicamos que escuche constantemente en el puerto 8080 para que pueda responder cuando reciba una peticion de algun cliente.
 app.listen(8080, () => {
     console.log('servidor funcionando')
