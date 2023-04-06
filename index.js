@@ -1,10 +1,11 @@
 //primero importamos la libreria expressjs para poder utilizarlo en nuestro proyecto.
 const express = require('express')
 const cors = require('cors')
-
+/* http://horacio-HP-EliteBook-745-G5.local:8080 */
 // creamos una app con la libreria express
 const app = express()
 
+app.use(express.static('public'))
 app.use(cors())
 app.use(express.json())
 

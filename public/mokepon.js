@@ -178,7 +178,7 @@ function unirseAlJuego() {
 
 // El document.getElementById me permite ocupar o traer desde el archivo html a js el elemento que queremos utilizar.
 function seleccionarMascotaJugador() {
-    sectionSeleccionarMascota.style.display = 'none'
+    
 
     if (inputHipodoge.checked){
         spanMascotaJugador.innerHTML = inputHipodoge.id;
@@ -191,7 +191,10 @@ function seleccionarMascotaJugador() {
         mascotaJugador = inputRatigueya.id
     } else {
         alert('DEBES SELECCIONAR UNA MASCOTA');
+        return
     } 
+
+    sectionSeleccionarMascota.style.display = 'none'
 
     seleccionarMokepon(mascotaJugador)
 
