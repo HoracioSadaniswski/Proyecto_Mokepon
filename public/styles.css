@@ -7,7 +7,10 @@ Otro selector es el id = 'nombre' funciona de la misma forma que el selector de 
 body{
     font-family: 'Poppins', sans-serif;
     background-image: url(./fondo/peakpx.jpg);
+    background-color: #609eb799;
     background-size: cover;
+    background-repeat: no-repeat;
+    
 }
 
 #seleccionar-mascota {
