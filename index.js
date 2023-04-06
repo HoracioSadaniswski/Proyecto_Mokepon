@@ -72,7 +72,11 @@ app.post('/mokepon/:jugadorId/posicion', (req, res) =>{
         jugadores[jugadorIndex].actualizarPosicion(x, y)
     }
 
-    res.end()
+    const enemigos = jugadores.filter((jugador) => jugadorId !== jugador.id)
+
+    res.send({
+        enemigos
+    })
 })
 
 // le indicamos que escuche constantemente en el puerto 8080 para que pueda responder cuando reciba una peticion de algun cliente.
